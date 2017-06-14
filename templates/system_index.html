@@ -1,0 +1,121 @@
+<!DOCTYPE HTML>
+<!--
+	Prologue by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		{%load staticfiles%}
+		<title>Prologue by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets2/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="{% static "css2/main.css"%}" />
+		<!--<link rel="stylesheet" href="assets/css/main.css" />   -->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets2/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets2/css/ie9.css" /><![endif]-->
+	</head>
+	<body>
+
+		<!-- Header -->
+			<div id="header">
+
+				<div class="top">
+
+					<!-- Logo -->
+						<div id="logo">
+							<span class="image avatar48"><img src="images2/avatar.jpg" alt="" /></span>
+							<h1 id="title">{{ user.username }}</h1>
+							<p>grupo</p>
+						</div>
+
+					<!-- Nav -->
+						<nav id="nav">
+
+							<ul>
+
+								<li><a href="#top" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">Inicio</span></a></li><br>
+								<li><h4>------------Inventario------------</h4></li>
+								<li><a href="#top" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-check-square">Listar</span></a></li>
+								<li><a href="#top" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-save">Nuevo</span></a></li>
+
+								<li><h4>-----------Proveedores-----------</h4></li>
+								<li><a href="#top" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-check-square">Listar</span></a></li>
+								<li><a href="#top" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-save">Nuevo</span></a></li>
+
+								<li><h4>-------------Cotizar-------------</h4></li>
+								<li><a href="#top" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-check-square">Listar</span></a></li>
+								<li><a href="#top" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-save">Nuevo</span></a></li>
+
+								<li><h4>-------------Ventas-------------</h4></li>
+								<li><a href="#top" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-check-square">Listar</span></a></li>
+								<li><a href="#top" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-save">Nuevo</span></a></li>
+
+								<li><h4>---------------Salir----------------</h4></li>
+								<li><a href="logout" id="contact-link" class="skel-layers-ignoreHref"><span class="icon fa-sign-out">log Out</span></a>
+								</li>
+
+							</ul>
+						</nav>
+
+				</div>
+
+				<div class="bottom">
+
+					<!-- Social Icons -->
+						<ul class="icons">
+							<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+							<li><a href="#" class="icon fa-instagram"><span class="label">Facebook</span></a></li>
+
+						</ul>
+
+				</div>
+
+			</div>
+
+		<!-- Main -->
+			<div id="main">
+
+				<!-- Intro -->
+					<section id="top" class="one dark cover">
+						<div class="container">
+
+							<header>
+								<h2 class="alt">El Mayorista</h2>
+								<p>Sistema contable.</p>
+							</header>
+
+							<footer>
+								<a href="#portfolio" class="button scrolly">Scroll </a>
+							</footer>
+
+						</div>
+					</section>
+			</div>
+
+		 	{% block login_content %}
+			{% endblock %}
+		<!-- Footer -->
+			<div id="footer">
+
+				<!-- Copyright -->
+					<ul class="copyright">
+						<li>&copy; Untitled. All rights reserved.</li><li>Dev: <a href="http://rafaelromario.com">Rafael Romario</a></li>
+					</ul>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="{% static "js2/jquery.min.js"%}"></script>
+			<script src="{% static "js2/jquery.scrolly.min.js"%}"></script>
+			<script src="{% static "js2/jquery.scrollzer.min.js"%}"></script>
+			<script src="{% static "js2/skel.min.js"%}"></script>
+			<script src="{% static "js2/util.js"%}"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="{% static "js2/main.js"%}"></script>
+
+	</body>
+</html>
+
