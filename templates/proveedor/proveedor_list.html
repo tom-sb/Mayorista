@@ -1,0 +1,39 @@
+{% extends "system_index.html" %}
+
+{% block system_Contable %}
+
+
+<table id="example1" class="table table-bordered table-striped">
+    
+    <thead>
+        <tr>
+
+            <th> NIT</th>                                      
+            <th>Empresa</th> 
+            <th>Telefono</th>                              
+            <th>Correo</th>
+            <th>Ciudad</th>
+            <th>Dirección</th>
+            <th></th>  
+                                
+        </tr>
+    </thead>
+    <tbody>
+    	{% for pr in proveedores %}
+    		<tr>
+    			<td>{{pr.nit}}</td>
+    			<td>{{pr.nombreEmpresa}}</td>
+    			<td>{{pr.telefonoUno}}</td>
+    			<td>{{pr.correo}}</td>
+    			<td>{{pr.ciudad}}</td>
+    			<td>{{pr.direccion}}</td>
+				<td><a href="{% url 'proveedor:proveedor_detail' pr.id %}"><span class="icon fa-eye "></span></a>
+					<a href="{% url 'proveedor:proveedor_edit' pr.id %}"><span class="icon fa-pencil-square-o"></span></a>
+				</td>
+    		</tr>
+    	{% endfor %}
+    </tbody>	
+
+</table>
+
+{%endblock%}

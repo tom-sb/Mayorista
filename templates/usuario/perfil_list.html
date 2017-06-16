@@ -2,21 +2,34 @@
 
 {% block system_Contable %}
 
-<ul>
-		{% for pr in perfiles %}
-			<li>
-				<h2>{{pr.user}} :</h2>
-				<h3>{{pr.user.first_name}} {{pr.user.last_name}} </h3>
-				<b>Numero de Documento: </b> {{pr.numeroDocumento}}</BR>
-				<b>Telefono: </b>{{pr.telefono}}</BR>
-				<b>Dirección: </b>{{pr.direccion}}</BR>
-				
-			</li>
-			<a href="{% url 'usuario:perfil_edit' pr.id %}" class="button scrolly">Actualizar</a>
 
-		{% endfor %}
-	</ul>
+<table id="example1" class="table ">
+    <thead>
+        <tr>
+            <th>Usuario</th>                                      
+            <th>Nombre</th> 
+            <th>Apellido</th>                              
+            <th>ID</th>
+            <th>Telefono</th>
+            <th>Dirección</th>
+            <th></th>                      
+        </tr>
+    </thead>
+    <tbody>
+    	{% for pr in object_list %}
+    		<tr>
+    			<td>{{pr.user}}</td>
+				<td>{{pr.user.first_name}}</td>
+				<td>{{pr.user.last_name}}</td>
+				<td>{{pr.numeroDocumento}}</td>
+				<td>{{pr.telefono}}</td>
+				<td>{{pr.direccion}}</td>
+				<td><a href="{% url 'usuario:perfil_edit' pr.id %}"><span class="icon fa-pencil-square-o"></span></a></td>
+    		</tr>
+    	{% endfor %}
+    </tbody>	
 
+</table>
 
 
 {%endblock%}

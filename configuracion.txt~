@@ -22,4 +22,6 @@ username: AdminMayorista
 pass: Pl4st1c0
 
 # aplicaciones
-Perfil
+./manage.py startapp 
+usuario
+proveedor
