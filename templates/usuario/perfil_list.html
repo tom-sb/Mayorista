@@ -1,0 +1,22 @@
+{% extends "system_index.html" %}
+
+{% block system_Contable %}
+
+<ul>
+		{% for pr in perfiles %}
+			<li>
+				<h2>{{pr.user}} :</h2>
+				<h3>{{pr.user.first_name}} {{pr.user.last_name}} </h3>
+				<b>Numero de Documento: </b> {{pr.numeroDocumento}}</BR>
+				<b>Telefono: </b>{{pr.telefono}}</BR>
+				<b>Dirección: </b>{{pr.direccion}}</BR>
+				
+			</li>
+			<a href="{% url 'usuario:perfil_edit' pr.id %}" class="button scrolly">Actualizar</a>
+
+		{% endfor %}
+	</ul>
+
+
+
+{%endblock%}
