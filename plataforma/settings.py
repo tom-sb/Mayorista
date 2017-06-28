@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     #mis Apps
     'usuario.apps.UsuarioConfig',
     'proveedor.apps.ProveedorConfig',
+    'inventario.apps.InventarioConfig',
 ]
 
 MIDDLEWARE = [
@@ -109,6 +110,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
+
+#AUTH_USER_MODEL = 'user.username'
 
 LANGUAGE_CODE = 'es-co'#'en-us'
 
