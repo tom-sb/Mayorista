@@ -20,8 +20,6 @@ def authentication(request):
         action = request.POST.get('action', None)
         username = request.POST.get('username', None)
         password = request.POST.get('password', None)
-        print(username)
-        print(password)
         if action == 'login':
             user = authenticate(username=username, password=password)          
             if user is not None:

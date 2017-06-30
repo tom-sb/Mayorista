@@ -14,6 +14,7 @@ urlpatterns = [#cambiar url logout
     	name="proveedor_detail"),
 	url(r'^proveedor/edit(?P<pk>[0-9]+)/$',views.ProveedorUpdate.as_view(),
 		name='proveedor_edit'),
+	url(r'^proveedor/buscar$', views.BuscarView.as_view(), name='buscar'),
 
 
 

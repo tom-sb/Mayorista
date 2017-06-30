@@ -16,8 +16,7 @@ class Inventario(models.Model):
 		decimal_places=2, default=0.00)
 	valorIva = models.DecimalField(max_digits=6,
 		decimal_places=2, default=0.00)
-	valorVenta = models.DecimalField(max_digits=7,
-		decimal_places=2, default=0.00)
+	valorVenta = models.DecimalField(max_digits=7, decimal_places=2, default=0.00)
 
 	def __unicode__(self):
 		return self.elemento

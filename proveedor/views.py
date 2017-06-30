@@ -5,7 +5,7 @@ from .models import Proveedor
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 #Vistas 
-from django.views.generic import ListView
+from django.views.generic import ListView, TemplateView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import (
     UpdateView, 
@@ -49,3 +49,23 @@ def proveedor_detail(request, pk):
         'proveedor' : proveedor
     }
     return HttpResponse(template.render(context, request))
+
+
+class BuscarView(TemplateView): 
+    #funcion que se ejecuta con boton tiene Metodo Post
+    def post(self, request, *args, **kwargs):
+        buscar = request.POST['busqueda']
+        print buscar
+        #nombreEmpresa__ con dos rayas al piso para acceder al atributo
+        busqueda = Proveedor.objects.filter(nombreEmpresa__contains=buscar)        
+        if busqueda:
+            print ("ha preuntado por un proveedor")
+            print busqueda
+        else:
+            busqueda = Proveedor.objects.filter(nombreRepresentante__contains=buscar)
+            print busqueda
+            print ("ha preuntado por un represntante")
+        return render(request, 'proveedor/proveedor_buscar.html',
+            {'busqueda' : busqueda, 'proveedor':True})
+        #provedor nombre del model
+        #busqueda el filter

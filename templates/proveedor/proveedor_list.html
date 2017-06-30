@@ -3,15 +3,27 @@
 {% block system_Contable %}
 
 
+<!--Busqueda de reservacion hacer una clase para ese search-->
+    <div class="busqueda">
+        <form class="navbar-search pull-left" method="POST" action="{%url 'proveedor:buscar'%}">{% csrf_token%}
+            <input type="text" name="busqueda" class="search-query" placeholder="Buscar">
+            <div class="btn-group">
+                <button class="btn btn-primary" type="submit"><i class="icon fa-search"></i></button>
+            </div>
+        </form>
+    </div>
+<!--Edn Busqueda de reservacion-->
+</BR></BR></BR></BR></BR>
+
+
+
+
 <table id="example1" class="table table-bordered table-striped">
     
     <thead>
-        <tr>
-
-            <th> NIT</th>                                      
+        <tr>                                 
             <th>Empresa</th> 
             <th>Telefono</th>                              
-            <th>Correo</th>
             <th>Ciudad</th>
             <th>Dirección</th>
             <th></th>  
@@ -21,10 +33,8 @@
     <tbody>
     	{% for pr in proveedores %}
     		<tr>
-    			<td>{{pr.nit}}</td>
     			<td>{{pr.nombreEmpresa}}</td>
     			<td>{{pr.telefonoUno}}</td>
-    			<td>{{pr.correo}}</td>
     			<td>{{pr.ciudad}}</td>
     			<td>{{pr.direccion}}</td>
 				<td><a href="{% url 'proveedor:proveedor_detail' pr.id %}"><span class="icon fa-eye "></span></a>
