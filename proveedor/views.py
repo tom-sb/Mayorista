@@ -24,7 +24,7 @@ class ProveedorInsert(CreateView):
 	'apellidoRepresentante','telefonoUno','telefonoDos',
 	'correo','sitioWeb','ciudad','direccion','banco',
 	'tipoCuenta','numeroCuenta',]
-	
+
 class ProovedorList(ListView):#, 
 #    PermissionAdminRequiredMixin, PermissionStandardRequiredMixin):
     model = Proveedor
@@ -69,3 +69,52 @@ class BuscarView(TemplateView):
             {'busqueda' : busqueda, 'proveedor':True})
         #provedor nombre del model
         #busqueda el filter
+
+import json
+#select * from proveedor where nombreEmpresa like '%Dev'
+#proveedores = Proveedor.objects.filter(nombreEmpresa__startswhit=busqueda)
+
+
+def search(request):
+    busqueda = request.GET.get('nombreEmpresa')#diccionario
+    proveedores = Proveedor.objects.filter(nombreEmpresa__contains=busqueda)
+    proveedores = [ proveedor_serializer(proveedor) for proveedor in proveedores]# Lista de diccionarios
+    return HttpResponse(json.dumps(proveedores), content_type = 'aplication/json')
+
+def proveedor_serializer(proveedor):
+    return {'id':proveedor.id, 'nombreEmpresa':proveedor.nombreEmpresa, 'nombreRepresentante': proveedor.nombreRepresentante}
+
+
+
+
+"""
+class Busqueda(ListView):
+    model = Proveedor
+    #Template_name = 'proveedor/proveedor_busquedaAjax.html'
+    context_object_name = 'proveedores'
+
+
+
+from django.core import serializers
+
+def BusquedaAjax (request):
+    print "fuera"
+    if request.method == 'GET':
+        print 'hola'
+
+
+
+class BusquedaAjax(TemplateView):
+    print "hola"
+    def get(self, request, *args, **kwargs):
+        print "En Get" 
+        id_proveedor = request.GET['id']
+        print id_proveedor
+
+        
+        proveedor = Proveedor.objects.filter(proveedor__id = id_proveedor)
+        data = serializers.serialize('json', proveedor, 
+            fields=('nombreEmpresa','nombreRepresentante'))
+        return HttpResponse(data, mimetype='application/json')
+        """
+

@@ -17,7 +17,6 @@
 
 
 
-
 <table id="example1" class="table table-bordered table-striped">
     
     <thead>
@@ -45,5 +44,21 @@
     </tbody>	
 
 </table>
+
+
+
+<!-- Prueba de Ajax -->
+<form method="GET" action="{% url 'proveedor:search'%}" id="search-proveedor">
+    <div>
+        <input type="text" name="nombreEmpresa">
+        <input type="submit" value="Buscar">
+    </div>
+</form>
+
+<div id="datos">
+    
+</div>
+
+
 
 {%endblock%}
