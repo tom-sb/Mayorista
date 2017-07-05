@@ -25,9 +25,9 @@
     			<td>{{pr.cantidad}}</td>
     			<td>{{pr.valorIva}}</td>
     			<td>{{pr.valorVenta}}</td>
-				<td><a href="{% url 'inventario:inventario_detail' pr.id %}"><span class="icon fa-eye "></span></a></td>
-				<td><a href="{%url 'inventario:inventario_edit' pr.id %}"><span class="icon fa-pencil-square-o"></span></a></td>
-				<td><a href="{%url 'inventario:inventario_delete' pr.id %}"><span class="icon fa-trash"></span></a></td>
+				<td><a href="{% url 'inventario:inventario_detail' pr.id %}"><span class="icon fa-eye "></span></a>
+				<a href="{%url 'inventario:inventario_edit' pr.id %}"><span class="icon fa-pencil-square-o"></span></a>
+				<a href="{%url 'inventario:inventario_delete' pr.id %}"><span class="icon fa-trash"></span></a></td>
     		</tr>
     	{% endfor %}
     </tbody>	

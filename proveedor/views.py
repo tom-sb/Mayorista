@@ -82,7 +82,7 @@ def search(request):
     return HttpResponse(json.dumps(proveedores), content_type = 'aplication/json')
 
 def proveedor_serializer(proveedor):
-    return {'id':proveedor.id, 'nombreEmpresa':proveedor.nombreEmpresa, 'nombreRepresentante': proveedor.nombreRepresentante}
+    return {'id':proveedor.id,'nit':proveedor.nit, 'nombreEmpresa':proveedor.nombreEmpresa, 'nombreRepresentante': proveedor.nombreRepresentante}
 
 
 

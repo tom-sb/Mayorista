@@ -17,7 +17,7 @@
 
 
 
-<table id="example1" class="table table-bordered table-striped">
+<table id="example1"  >
     
     <thead>
         <tr>                                 
@@ -29,7 +29,7 @@
                                 
         </tr>
     </thead>
-    <tbody>
+    <tbody id="datosCa">
     	{% for pr in proveedores %}
     		<tr>
     			<td>{{pr.nombreEmpresa}}</td>
@@ -55,9 +55,25 @@
     </div>
 </form>
 
+<!--
 <div id="datos">
     
 </div>
+-->
+<table id="datos">
+    <thead>
+        <tr>
+            <th>Nit</th>                             
+            <th>Empresa</th> 
+            <th>Representante</th>                       
+        </tr>
+    </thead>
+    <tbody id="datosC">
+        <tr>
+            
+        </tr>
+    </tbody>
+</table>
 
 
 

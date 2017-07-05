@@ -10,10 +10,14 @@ $(document).ready(function() {
 			success: function(json){
 				console.log(json)
 				var html = ""
+				
 				for (var i=0; i<json.length; i++){
-					html += '<ul></li>'+json[i].nombreEmpresa+'</li><li>'+json[i].nombreRepresentante+'</li></lu>'
+				html += '<tr><td>'+json[i].id+ '</td><td>'+
+					json[i].nombreEmpresa+ '</td><td>'+
+					json[i].nombreRepresentante+'</td></tr>'
+				 
 				}
-				$("#datos").html(html);
+				$("#datosC").html(html);
 			}
 		})
 	})

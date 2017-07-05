@@ -44,6 +44,13 @@
 		border-spacing: 0;
 	}
 
+	/*xue*/
+	table, th, td {
+	border: 1px solid #273b47 ;
+	border-collapse: collapse;/*Borde sencillo de liena*/
+	}
+
+
 	body {
 		-webkit-text-size-adjust: none;
 	}
