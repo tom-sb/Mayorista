@@ -38,6 +38,11 @@ class ProveedorUpdate(UpdateView):
 	'correo','sitioWeb','ciudad','direccion','banco',
 	'tipoCuenta','numeroCuenta',]
 
+class ProveedorDelete(DeleteView):
+    permission_required= ('proveedor.proveedor_inventario')
+    model = Proveedor
+    success_url = reverse_lazy('proveedor:proveedor_list')
+
 
 def proveedor_detail(request, pk):
     #capturar id de reservaciones

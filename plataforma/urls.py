@@ -21,6 +21,7 @@ urlpatterns = [
     url(r'^', include('usuario.urls', namespace='usuario')),
     url(r'^', include('proveedor.urls', namespace='proveedor')),
     url(r'^', include('inventario.urls', namespace='inventario')),
+    url(r'^', include('cliente.urls', namespace = 'cliente')),
 
 
 ]

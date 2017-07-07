@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'usuario.apps.UsuarioConfig',
     'proveedor.apps.ProveedorConfig',
     'inventario.apps.InventarioConfig',
+    'cliente.apps.ClienteConfig',
+    'factura.apps.FacturaConfig',
 ]
 
 MIDDLEWARE = [

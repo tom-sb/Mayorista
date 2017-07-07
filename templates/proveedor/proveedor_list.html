@@ -36,8 +36,10 @@
     			<td>{{pr.telefonoUno}}</td>
     			<td>{{pr.ciudad}}</td>
     			<td>{{pr.direccion}}</td>
-				<td><a href="{% url 'proveedor:proveedor_detail' pr.id %}"><span class="icon fa-eye "></span></a>
+				<td>
+                    <a href="{% url 'proveedor:proveedor_detail' pr.id %}"><span class="icon fa-eye "></span></a>
 					<a href="{% url 'proveedor:proveedor_edit' pr.id %}"><span class="icon fa-pencil-square-o"></span></a>
+                    <a href="{% url 'proveedor:proveedor_delete' pr.id %}"><span class="icon fa-trash"></span></a>
 				</td>
     		</tr>
     	{% endfor %}

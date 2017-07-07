@@ -14,6 +14,8 @@ urlpatterns = [#cambiar url logout
     	name="proveedor_detail"),
 	url(r'^proveedor/edit(?P<pk>[0-9]+)/$',views.ProveedorUpdate.as_view(),
 		name='proveedor_edit'),
+	 url(r'^proveedor/delete(?P<pk>[0-9]+)/$', views.ProveedorDelete.as_view(),
+	 	name="proveedor_delete"),
 	url(r'^proveedor/buscar$', views.BuscarView.as_view(), name='buscar'),
 	url(r'^proveedor/search$', views.search, name='search'),
 	#url(r'^proveedor/ajax$', views.BusquedaAjax.as_view(), name='search_Ajax'),
@@ -23,8 +25,4 @@ urlpatterns = [#cambiar url logout
 		#name = 'buscar_ajax'),
 
 	#url(r'^proveedor/busqueda_ajax$', BusquedaAjax.as_view(), name='buscar_ajax'),
-
-
-
-
 ]
