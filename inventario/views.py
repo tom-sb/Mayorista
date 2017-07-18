@@ -7,8 +7,8 @@ from .models import Inventario
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import (
-    UpdateView, 
-    CreateView, 
+    UpdateView,
+    CreateView,
     DeleteView
     )
 from django.core.urlresolvers import reverse_lazy
@@ -20,13 +20,13 @@ class InventarioInsert(CreateView):
 	success_url = reverse_lazy('inventario:inventario_list')
 	fields = ['codigo', 'elemento', 'cantidad', 'descripcion',
 	 'valorCompra', ]
-	""" 
+	"""
 	def calcular_precio_venta(self, form):
 		print (valorCompra)
 		form.instance.elemento = "platico"
 	 	form.instance.valorVenta = 200
 	 	return super(InventarioInsert, self).calcular_precio_venta(form)
-	 	
+
 	 	"""
 
 
@@ -38,8 +38,8 @@ class InventarioUpdate(UpdateView):
 	model = Inventario
 	success_url = reverse_lazy('inventario:inventario_list')
 	fields = ['codigo', 'elemento', 'cantidad', 'descripcion',
-	 'valorCompra', 'valorIva', 'valorVenta']
-
+            'valorCompra', 'valorIva', 'valorVenta']
+    
 class InventarioDelete(DeleteView):#,
 #    PermissionAdminRequiredMixin, PermissionStandardRequiredMixin):
 	permission_required= ('inventario.delete_inventario')

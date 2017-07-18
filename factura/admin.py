@@ -5,7 +5,7 @@ from .models import Factura, DetalleFactura
 # Register your models here.
 @admin.register(Factura)
 class AdminFactura(admin.ModelAdmin):
-	list_display = ('serie', 'maquina', 'fecha', 
+	list_display = ( 'maquina', 'fecha', 
 		'vendedor', 'cliente',)
 
 @admin.register(DetalleFactura)

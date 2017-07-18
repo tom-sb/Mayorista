@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'^', include('proveedor.urls', namespace='proveedor')),
     url(r'^', include('inventario.urls', namespace='inventario')),
     url(r'^', include('cliente.urls', namespace = 'cliente')),
+    url(r'^', include('factura.urls', namespace = 'factura')),
 
 
 ]

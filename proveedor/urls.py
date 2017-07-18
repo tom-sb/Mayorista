@@ -10,7 +10,7 @@ urlpatterns = [#cambiar url logout
 	name="proveedor_insert"),
 	url(r'^proveedor/list$', views.ProovedorList.as_view(),
 		name='proveedor_list'),
-	url(r'^proveedor/(?P<pk>[0-9]+)/$', views.proveedor_detail, 
+	url(r'^proveedor/(?P<pk>[0-9]+)/$', views.proveedor_detail,
     	name="proveedor_detail"),
 	url(r'^proveedor/edit(?P<pk>[0-9]+)/$',views.ProveedorUpdate.as_view(),
 		name='proveedor_edit'),

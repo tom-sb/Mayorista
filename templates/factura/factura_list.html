@@ -1,0 +1,44 @@
+{% extends "system_index.html" %}
+
+{% block system_Contable %}
+
+<!--Boton descargar pdf todas las facturas-->
+    <div class="busqueda">
+        <form class="navbar-search pull-left" method="POST" action="{%url 'factura:reporte_Facturas'%}">{% csrf_token%}
+          <button class="btn btn-primary" type="submit"><i class="icon fa-file-pdf-o"></i></button>
+        </form>
+    </div>
+<!--end descargar pdf todas las facturas-->
+
+
+<table id="example1" class="table table-bordered table-striped">
+
+    <thead>
+        <tr>
+            <th>Factura</th>
+            <th>Fecha</th>
+            <th>Vendedor</th>
+            <th>Cliente</th>
+            <th>Iva</th>
+            <th>Total</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    	{% for pr in facturas %}
+    		<tr>
+    			<td>{{pr.serie}}</td>
+    			<td>{{pr.fecha}}</td>
+    			<td>{{pr.vendedor}}</td>
+    			<td>{{pr.cliente}}</td>
+    			<td>{{pr.iva}}</td>
+    			<td>{{pr.total}}</td>
+				<td><a href="{% url 'factura:factura_detail' pr.serie %}"><span class="icon fa-eye "></span></a>
+				<a href="{% url 'factura:factura_edit' pr.serie%}"><span class="icon fa-pencil-square-o"></span></a>
+    		</tr>
+    	{% endfor %}
+    </tbody>
+
+</table>
+
+{%endblock%}

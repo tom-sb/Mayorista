@@ -12,18 +12,20 @@ class Factura(models.Model):
 		('venta a credito','Venta a credito'), ('bono','Bono'),
 		('vale','Vale'), ('otros','Otros'),
 		)
-	serie = models.IntegerField(primary_key=True, auto_created=True)#codigo de factura
+	serie = models.AutoField(primary_key=True, auto_created=True, serialize=False)#codigo de factura
+	
 	maquina = models.CharField(max_length=20)#N Seriemaquina
 	fecha = models.DateField(auto_now_add=True)#fecha de Venta
 	vendedor = models.ForeignKey(User)
 	cliente = models.ForeignKey(Cliente)
 	formaPago = models.CharField(choices=FORMA_PAGO ,
 		max_length=50, verbose_name='forma de pago')
+	iva = models.DecimalField(max_digits=6, decimal_places=2, 
+		null=True, blank=True) 
 	total = models.DecimalField(max_digits=8, 
 		decimal_places=2, null=True, blank=True)
-	def __unicode__(self):
-		return self.serie
-
+	def __str__(self):
+		return str(self.serie)
 
 
 class DetalleFactura(models.Model):
@@ -36,6 +38,6 @@ class DetalleFactura(models.Model):
 	subtotal = models.DecimalField(max_digits=6, decimal_places=2)
 
 	def __unicode__(self):
-		return self.producto
+		return self.descripcion
     
 

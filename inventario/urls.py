@@ -16,5 +16,4 @@ urlpatterns = [#cambiar url logout
 	 	name="inventario_delete"),
 	url(r'^inventario/(?P<pk>[0-9]+)/$', views.inventario_detail, 
 		name="inventario_detail"),
-
 ]

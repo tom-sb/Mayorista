@@ -51,7 +51,6 @@ class PerfilList(ListView):#,
 
     model = Perfil
     context_object_name = 'perfiles'
-    print 3
 #esta funcion permite ver solo las reservaciones del usuario
     def get_queryset(self):
         return Perfil.objects.filter(user=self.request.user)
@@ -60,7 +59,6 @@ class PerfilList(ListView):#,
 #editar perfil actual
 class PerfilUpdate(UpdateView):#,
 #    PermissionAdminRequiredMixin, PermissionStandardRequiredMixin):
-    print 4
     model = Perfil
     success_url = reverse_lazy('usuario:system_index')
     fields = ['numeroDocumento','telefono','direccion',] 
