@@ -1,0 +1,65 @@
+<\<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Reporte de facturas</title>
+	</head>
+	<body>
+    {% for algo in datoFactura %}
+		<div id="headerContent">
+		    <center> <h1>EL MAYORISTA</h1>
+		    <h3>Direccion: Cra 10 # , Chiquinquirá, Boyacá</h3>
+		    <h3>Télefono: </h3>
+		    <h3>NIT: </h3>
+        <h3>Maquina: {{algo.maquina}} </h3>
+        <h3>Fecha: {{algo.fecha}}</h3>
+        <h3>Vendedor: {{algo.vendedor}} </h3>
+        <h3>Cliente: {{algo.cliente}} </h3>
+        <h3>Forma de pago {{algo.formaPago}} </h3>
+        <h3> </h3>
+        <h3> </h3>
+		</div>
+          </br><center> <h2> FACTURA DE VENTA {{algo.serie}} </h2>
+  {% endfor %}
+
+		<table id="example1" class="table table-bordered table-striped">
+	    <thead>
+	        <tr>
+	            <th style="border:1px solid black; padding: 2px;">producto</th>
+	            <th style="border:1px solid black; padding: 2px;">precio</th>
+	            <th style="border:1px solid black; padding: 2px;">cantidad</th>
+	            <th style="border:1px solid black; padding: 2px;">valorIva</th>
+              <th style="border:1px solid black; padding: 2px;">subtotal</th>
+	        </tr>
+	    </thead>
+	    <tbody>
+		    	{% for factura in ventas %}
+		    		<tr>
+		    			<td style="border:1px solid black; padding: 2px;">{{factura.producto}}</td>
+		    			<td style="border:1px solid black; padding: 2px;">{{factura.precio}}</td>
+		    			<td style="border:1px solid black; padding: 2px;">{{factura.cantidad}}</td>
+		    			<td style="border:1px solid black; padding: 2px;">{{factura.valorIva}}</td>
+              <td style="border:1px solid black; padding: 2px;">{{factura.subtotal}}</td>
+		    		</tr>
+		    	{% endfor %}
+	    </tbody>
+      {% for algo in datoFactura %}
+      <thead>
+	        <tr>
+            <th></th><th></th><th></th>
+	          <th style="border:1px solid black; padding: 2px;">Total Iva</th>
+            <th style="border:1px solid black; padding: 2px;">{{algo.iva}}</th>
+	        </tr>
+	    </thead>
+      <thead>
+          <tr>
+            <th></th><th></th><th></th>
+            <th style="border:1px solid black; padding: 2px;">Total</th>
+            <th style="border:1px solid black; padding: 2px;">{{algo.total}}</th>
+          </tr>
+      </thead>
+      {% endfor %}
+	</table>
+
+	</body>
+</html>

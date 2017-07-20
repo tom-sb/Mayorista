@@ -20,6 +20,8 @@ urlpatterns = [#cambiar url logout
     url(r'^factura/detalle', views.DetalleFacturaInsert.as_view(),
     	name="detalle_factura_insert"),
     url(r'^factura/reporteAll', views.Generar_pdf, name='reporte_Facturas'),
+    url(r'^factura/Pdf_Factura', views.PdfFactura.as_view(),
+       name='reporte_Detalle_Factura'),
     #prueba de reporte estatico con reportLab
     #url(r'^factura/report/$', views.report),
 ]

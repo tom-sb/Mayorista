@@ -2,15 +2,12 @@
 
 {% block system_Contable %}
 
-<h2>Detalles</h2>
-<h3>Detalles</h3>
-
 <form method="post">
 <a href="{%url 'factura:factura_list' %}"><span class="icon fa-arrow-left "></span></a>
 	<header>
-        <h2>Factura </h2>
+        <h2>Detalles</h2>
     </header>
-   
+
     {% csrf_token %}
     {{ form.as_p }}
     {% csrf_token %}

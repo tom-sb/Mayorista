@@ -79,7 +79,7 @@ def factura_detail(request, pk):
     }
     return HttpResponse(template.render(context, request))
 
-
+#Funciones de Creacion de PDF
 def write_pdf(template_src, context_dict):
     template = loader.get_template(template_src)
     context = Context(context_dict)
@@ -95,16 +95,31 @@ def Generar_pdf(request):
     ventas = Factura.objects.all()
     return write_pdf('factura/factura_all.html',
                      {'pagesize':'legal', 'ventas':ventas})
+#Final de Funciones de Creacion de PDF
+
+class PdfFactura(TemplateView):
+    def post(self, request, *args, **kwargs):
+        buscar = request.POST['busqueda']
+        print(buscar)
+        ventas = DetalleFactura.objects.filter(factura=buscar).order_by("-producto")
+        datoFactura = Factura.objects.filter(serie=buscar)
+        return write_pdf('factura/factura_Detalle.html',
+                         {'pagesize':'A4', 'ventas':ventas,'datoFactura':datoFactura})
+
+
 
 
 
 class DetalleFacturaInsert(CreateView):
     model = DetalleFactura
-    fields = ['factura', 'producto', 'descripcion', 'precio',
-        'cantidad', 'valorIva', 'subtotal', 'factura']
+    fields = ['factura', 'producto', 'descripcion', 'cantidad']
     succes_ulr = reverse_lazy('factura:factura_list')
 
-
+#funcion de ver el contenido de la factura por busqueda de serie
+# class BuscarFactura(TemplateView)
+#     def post(self, request, *args, **kwargs):
+#         buscar = request.POST['busqueda']
+#         print buscar
 
 
 

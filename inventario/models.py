@@ -3,6 +3,7 @@ from django.db.models import signals
 from django.db import models
 from proveedor.models import Proveedor
 import decimal
+from django.db.models import signals
 
 TAX_VALUE = 0.18
 GANANCIA = 1.40
@@ -34,5 +35,3 @@ class Inventario(models.Model):
 		else:
 			self.valorIva=0
 			super(Inventario, self).save(*args, **kwargs)
-
-
