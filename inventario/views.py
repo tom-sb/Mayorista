@@ -13,8 +13,12 @@ from django.views.generic.edit import (
     )
 from django.core.urlresolvers import reverse_lazy
 
+#mixins
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.contrib.auth.decorators import login_required
 
-class InventarioInsert(CreateView):
+
+class InventarioInsert(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
 	permission_required = ('inventario.add_inventario')
 	model = Inventario
 	success_url = reverse_lazy('inventario:inventario_list')
@@ -27,27 +31,27 @@ class InventarioInsert(CreateView):
 	 	form.instance.valorVenta = 200
 	 	return super(InventarioInsert, self).calcular_precio_venta(form)
 
-	 	"""
+"""
 
+class InventarioList(LoginRequiredMixin, ListView):
+    #permission_required = ('inventario.add_inventario')
+    model = Inventario
+    context_object_name = 'elementos'
 
-class InventarioList(ListView):
-	model = Inventario
-	context_object_name = 'elementos'
+class InventarioUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
+    permission_required = ('inventario.change_inventario')
+    model = Inventario
+    success_url = reverse_lazy('inventario:inventario_list')
+    fields = ['codigo', 'elemento', 'cantidad', 'descripcion',
+              'valorCompra', 'valorIva', 'valorVenta']
 
-class InventarioUpdate(UpdateView):
-	model = Inventario
-	success_url = reverse_lazy('inventario:inventario_list')
-	fields = ['codigo', 'elemento', 'cantidad', 'descripcion',
-            'valorCompra', 'valorIva', 'valorVenta']
-    
-class InventarioDelete(DeleteView):#,
-#    PermissionAdminRequiredMixin, PermissionStandardRequiredMixin):
+class InventarioDelete(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
 	permission_required= ('inventario.delete_inventario')
 	model = Inventario
 	success_url = reverse_lazy('inventario:inventario_list')
 
 
-
+@login_required()
 def inventario_detail(request, pk):
     inventario = get_object_or_404(Inventario, pk=pk)
     template = loader.get_template('inventario/inventario_detail.html')

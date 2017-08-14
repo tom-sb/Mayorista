@@ -13,32 +13,20 @@ from django.views.generic.edit import (
     CreateView,
     DeleteView
     )
-
-
 from django.contrib.auth.models import User
 from inventario.models import Inventario
 from .models import Factura, DetalleFactura
-
 from django.core.urlresolvers import reverse_lazy
-
-"""
-#pdf
-import os
-from io import BytesIO
-from reportlab.pdfgen import canvas
-from reportlab.lib.styles import getSampleStyleSheet, TA_CENTER
-from reportlab.platypus.paragraph import Paragraph
-from reportlab.platypus import Table, TableStyle
-from reportlab.lib.pagesizes import A4, cm
-from reportlab.lib import colors
-"""
-
+#mixins
+from django.contrib.auth.mixins import(
+    LoginRequiredMixin, PermissionRequiredMixin)
+from django.contrib.auth.decorators import (
+    login_required, permission_required)
 #pdf Dionicio
 import datetime
 #por defecto se instala html5lib==0.999999999
 #para que funciones pip install html5lib==1.0b8
 import xhtml2pdf.pisa as pisa
-
 import cStringIO as StringIO
 from django import http
 import cgi
@@ -52,8 +40,8 @@ def buscarProducto(request):
                                   'valorIva', 'valorVenta'))
     return HttpResponse(data, content_type='application/json')
 
-
-class FacturaInsert(CreateView):
+class FacturaInsert(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
+    permission_required = ('factura.add_factura')
     model = Factura
     succes_ulr = reverse_lazy('factura:factura_list')
     fields = ['maquina','cliente','formaPago',]
@@ -62,15 +50,19 @@ class FacturaInsert(CreateView):
         form.instance.vendedor = self.request.user
         return super(FacturaInsert, self).form_valid(form)
 
-class FacturaList(ListView):
+class FacturaList(LoginRequiredMixin, PermissionRequiredMixin, ListView):
+    permission_required = ('factura.add_factura')
     model = Factura
     context_object_name = 'facturas'
 
-class FacturaUpdate(UpdateView):
+class FacturaUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
+    permission_required = ('factura.change_factura')
     model = Factura
     succes_ulr = reverse_lazy('factura:factura_list')
     fields = ['maquina', 'cliente', 'formaPago',]
 
+@login_required()
+@permission_required('factura.add_factura')
 def factura_detail(request, pk):
     factura = get_object_or_404(Factura, pk=pk)
     template = loader.get_template('factura/factura_detail.html')
@@ -80,6 +72,9 @@ def factura_detail(request, pk):
     return HttpResponse(template.render(context, request))
 
 #Funciones de Creacion de PDF
+
+@login_required()
+@permission_required('factura.add_factura')
 def write_pdf(template_src, context_dict):
     template = loader.get_template(template_src)
     context = Context(context_dict)
@@ -91,13 +86,16 @@ def write_pdf(template_src, context_dict):
                                  content_type = 'application/pdf')
     return http.HttpResponse('ocurrio un error al generar el reporte %s'% cgi.escape(html))
 
+@login_required()
+@permission_required('factura.add_factura')
 def Generar_pdf(request):
     ventas = Factura.objects.all()
     return write_pdf('factura/factura_all.html',
                      {'pagesize':'legal', 'ventas':ventas})
 #Final de Funciones de Creacion de PDF
 
-class PdfFactura(TemplateView):
+class PdfFactura(LoginRequiredMixin, PermissionRequiredMixin, TemplateView):
+    permission_required = ('factura.add_factura')
     def post(self, request, *args, **kwargs):
         buscar = request.POST['busqueda']
         print(buscar)
@@ -110,7 +108,7 @@ class PdfFactura(TemplateView):
 
 
 
-class DetalleFacturaInsert(CreateView):
+class DetalleFacturaInsert(LoginRequiredMixin, CreateView):
     model = DetalleFactura
     fields = ['factura', 'producto', 'descripcion', 'cantidad']
     succes_ulr = reverse_lazy('factura:factura_list')
@@ -121,7 +119,17 @@ class DetalleFacturaInsert(CreateView):
 #         buscar = request.POST['busqueda']
 #         print buscar
 
-
+"""
+#pdf
+import os
+from io import BytesIO
+from reportlab.pdfgen import canvas
+from reportlab.lib.styles import getSampleStyleSheet, TA_CENTER
+from reportlab.platypus.paragraph import Paragraph
+from reportlab.platypus import Table, TableStyle
+from reportlab.lib.pagesizes import A4, cm
+from reportlab.lib import colors
+"""
 
 """
 # class Generar_pdf(TemplateView):

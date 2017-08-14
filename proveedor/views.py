@@ -4,33 +4,25 @@ from .models import Proveedor
 #importar http
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
-#Vistas 
+#Vistas
 from django.views.generic import ListView, TemplateView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import (
-    UpdateView, 
-    CreateView, 
+    UpdateView,
+    CreateView,
     DeleteView
     )
 from django.core.urlresolvers import reverse_lazy
 
+#Permisos
+from django.contrib.auth.mixins import (
+    LoginRequiredMixin, PermissionRequiredMixin)
+from django.contrib.auth.decorators import login_required
+
 
 #---------------------Proveedor ---------------------------------
-class ProveedorInsert(CreateView):
-	permission_required = ('proveedor: add_proveedor')
-	model = Proveedor
-	success_url = reverse_lazy ('usuario:system_index')
-	fields = ['nit','nombreEmpresa','nombreRepresentante',
-	'apellidoRepresentante','telefonoUno','telefonoDos',
-	'correo','sitioWeb','ciudad','direccion','banco',
-	'tipoCuenta','numeroCuenta',]
-
-class ProovedorList(ListView):#, 
-#    PermissionAdminRequiredMixin, PermissionStandardRequiredMixin):
-    model = Proveedor
-    context_object_name = 'proveedores'
-
-class ProveedorUpdate(UpdateView):
+class ProveedorInsert(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
+	permission_required = ('proveedor.add_proveedor')
 	model = Proveedor
 	success_url = reverse_lazy('proveedor:proveedor_list')
 	fields = ['nit','nombreEmpresa','nombreRepresentante',
@@ -38,12 +30,27 @@ class ProveedorUpdate(UpdateView):
 	'correo','sitioWeb','ciudad','direccion','banco',
 	'tipoCuenta','numeroCuenta',]
 
-class ProveedorDelete(DeleteView):
-    permission_required= ('proveedor.proveedor_inventario')
+class ProovedorList(LoginRequiredMixin, PermissionRequiredMixin, ListView):#,
+    permission_required= ('proveedor.add_proveedor')
+    model = Proveedor
+    context_object_name = 'proveedores'
+
+class ProveedorUpdate(LoginRequiredMixin,PermissionRequiredMixin, UpdateView):
+    permission_required = ('proveedor.change_proveedor')
+    model = Proveedor
+    success_url = reverse_lazy('proveedor:proveedor_list')
+    fields = ['nit','nombreEmpresa','nombreRepresentante',
+              'apellidoRepresentante','telefonoUno','telefonoDos',
+              'correo','sitioWeb','ciudad','direccion','banco',
+              'tipoCuenta','numeroCuenta',]
+
+
+class ProveedorDelete(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
+    permission_required= ('proveedor.delete_proveedor')
     model = Proveedor
     success_url = reverse_lazy('proveedor:proveedor_list')
 
-
+@login_required()
 def proveedor_detail(request, pk):
     #capturar id de reservaciones
     proveedor = get_object_or_404(Proveedor, pk=pk)
@@ -56,13 +63,13 @@ def proveedor_detail(request, pk):
     return HttpResponse(template.render(context, request))
 
 
-class BuscarView(TemplateView): 
+class BuscarView(LoginRequiredMixin, TemplateView):
     #funcion que se ejecuta con boton tiene Metodo Post
     def post(self, request, *args, **kwargs):
         buscar = request.POST['busqueda']
         print buscar
         #nombreEmpresa__ con dos rayas al piso para acceder al atributo
-        busqueda = Proveedor.objects.filter(nombreEmpresa__contains=buscar)        
+        busqueda = Proveedor.objects.filter(nombreEmpresa__contains=buscar)
         if busqueda:
             print ("ha preuntado por un proveedor")
             print busqueda
@@ -79,16 +86,16 @@ import json
 #select * from proveedor where nombreEmpresa like '%Dev'
 #proveedores = Proveedor.objects.filter(nombreEmpresa__startswhit=busqueda)
 
-
+@login_required()
 def search(request):
     busqueda = request.GET.get('nombreEmpresa')#diccionario
     proveedores = Proveedor.objects.filter(nombreEmpresa__contains=busqueda)
     proveedores = [ proveedor_serializer(proveedor) for proveedor in proveedores]# Lista de diccionarios
     return HttpResponse(json.dumps(proveedores), content_type = 'aplication/json')
 
+@login_required()
 def proveedor_serializer(proveedor):
     return {'id':proveedor.id,'nit':proveedor.nit, 'nombreEmpresa':proveedor.nombreEmpresa, 'nombreRepresentante': proveedor.nombreRepresentante}
-
 
 
 
@@ -97,7 +104,6 @@ class Busqueda(ListView):
     model = Proveedor
     #Template_name = 'proveedor/proveedor_busquedaAjax.html'
     context_object_name = 'proveedores'
-
 
 
 from django.core import serializers
@@ -112,14 +118,13 @@ def BusquedaAjax (request):
 class BusquedaAjax(TemplateView):
     print "hola"
     def get(self, request, *args, **kwargs):
-        print "En Get" 
+        print "En Get"
         id_proveedor = request.GET['id']
         print id_proveedor
 
-        
+
         proveedor = Proveedor.objects.filter(proveedor__id = id_proveedor)
-        data = serializers.serialize('json', proveedor, 
+        data = serializers.serialize('json', proveedor,
             fields=('nombreEmpresa','nombreRepresentante'))
         return HttpResponse(data, mimetype='application/json')
         """
-
