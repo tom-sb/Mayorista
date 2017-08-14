@@ -18,20 +18,23 @@ class Factura(models.Model):
 		('vale','Vale'), ('otros','Otros'),
 		)
 	serie = models.AutoField(primary_key=True, auto_created=True, serialize=False)#codigo de factura
-
 	maquina = models.CharField(max_length=20)#N Seriemaquina
 	fecha = models.DateField(auto_now_add=True)#fecha de Venta
 	vendedor = models.ForeignKey(User)
 	cliente = models.ForeignKey(Cliente)
 	formaPago = models.CharField(choices=FORMA_PAGO ,
 		max_length=50, verbose_name='forma de pago')
-	iva = models.DecimalField(max_digits=6, decimal_places=2,
+	iva = models.DecimalField(max_digits=6, decimal_places=2, default=0,
 		null=True, blank=True)
-	total = models.DecimalField(max_digits=8,
+	total = models.DecimalField(max_digits=8, default=0,
 		decimal_places=2, null=True, blank=True)
 	def __str__(self):
 		return str(self.serie)
 
+"""	def save(self, *args, **kwargs):
+		self.iva = 0
+		self.total = 0
+		super(Factura, self).save(*args, **kwargs)"""
 
 class DetalleFactura(models.Model):
 	factura =models.ForeignKey(Factura, on_delete=models.CASCADE)
@@ -57,8 +60,8 @@ class DetalleFactura(models.Model):
 		try:
 			consultaPrecio = Inventario.objects.get(elemento=self.producto)
 			self.precio = round(float(consultaPrecio.valorVenta))
-			self.valorIva = round(float(consultaPrecio.valorIva))
-			self.subtotal = round(float(self.precio))
+			self.valorIva = round(float(consultaPrecio.valorIva)*self.cantidad)
+			self.subtotal = round(float(self.precio)*self.cantidad)
 			consultaPrecio.cantidad -= self.cantidad
 			consultaPrecio.save()
 			consultaFactura = Factura.objects.get(serie = str(self.factura))

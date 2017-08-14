@@ -43,22 +43,21 @@ def buscarProducto(request):
 class FacturaInsert(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     permission_required = ('factura.add_factura')
     model = Factura
-    succes_ulr = reverse_lazy('factura:factura_list')
+    success_url = reverse_lazy('factura:factura_list')
     fields = ['maquina','cliente','formaPago',]
-    succes_ulr = reverse_lazy('factura:factura_list')
     def form_valid(self, form):
         form.instance.vendedor = self.request.user
         return super(FacturaInsert, self).form_valid(form)
 
-class FacturaList(LoginRequiredMixin, PermissionRequiredMixin, ListView):
-    permission_required = ('factura.add_factura')
+class FacturaList(LoginRequiredMixin, ListView):
+    #permission_required = ('factura.add_factura')
     model = Factura
     context_object_name = 'facturas'
 
 class FacturaUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     permission_required = ('factura.change_factura')
     model = Factura
-    succes_ulr = reverse_lazy('factura:factura_list')
+    success_url = reverse_lazy('factura:factura_list')
     fields = ['maquina', 'cliente', 'formaPago',]
 
 @login_required()
@@ -73,8 +72,8 @@ def factura_detail(request, pk):
 
 #Funciones de Creacion de PDF
 
-@login_required()
-@permission_required('factura.add_factura')
+#@login_required()
+#@permission_required('factura.add_factura')
 def write_pdf(template_src, context_dict):
     template = loader.get_template(template_src)
     context = Context(context_dict)
@@ -86,8 +85,8 @@ def write_pdf(template_src, context_dict):
                                  content_type = 'application/pdf')
     return http.HttpResponse('ocurrio un error al generar el reporte %s'% cgi.escape(html))
 
-@login_required()
-@permission_required('factura.add_factura')
+#@login_required()
+#@permission_required('factura.add_factura')
 def Generar_pdf(request):
     ventas = Factura.objects.all()
     return write_pdf('factura/factura_all.html',
@@ -110,8 +109,8 @@ class PdfFactura(LoginRequiredMixin, PermissionRequiredMixin, TemplateView):
 
 class DetalleFacturaInsert(LoginRequiredMixin, CreateView):
     model = DetalleFactura
+    success_url = reverse_lazy('factura:factura_list')
     fields = ['factura', 'producto', 'descripcion', 'cantidad']
-    succes_ulr = reverse_lazy('factura:factura_list')
 
 #funcion de ver el contenido de la factura por busqueda de serie
 # class BuscarFactura(TemplateView)

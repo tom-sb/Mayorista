@@ -10,5 +10,5 @@ class AdminFactura(admin.ModelAdmin):
 
 @admin.register(DetalleFactura)
 class AdminDetalleFactura(admin.ModelAdmin):
-	list_display = ('factura', 'producto', 'cantidad', 
+	list_display = ('factura', 'producto', 'cantidad',
 		'valorIva', 'subtotal',)
