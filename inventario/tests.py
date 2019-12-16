@@ -6,7 +6,7 @@ import pytest
 #testInventario
 class TestInventario(TestCase):
     def setUp(self):
-        Inventario.objects.create(Codigo = "123456",\
+        Inventario.objects.create(codigo = "123456",\
                 elemento = "arroz",cantidad = 12, \
                 descripcion = "arroz de alta calidad",\
                 valorCompra = 234,valorIva = 16,\
