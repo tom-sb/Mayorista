@@ -4,9 +4,11 @@ import pytest
 # Create your tests here.
 class BasicTest(TestCase):
     def test_fields(self):
-        cliente = Cliente()
-        cliente.TIPO_CUENTA = "Make more cuentas"
-        cliente.nombre = "here name"
-        cliente.save()
-        record = Cliente.objects.get(pk=1)
-        self.assertEqual(record, cliente)
+        Cliente.objects.create( dni="71457216", \ 
+            nombre="Javier",apellidos="Obando", \
+            correo="adf@unsa.edu",ciudad="Toquepala",\
+            direccion="av las orquideas",banco="bcp",\
+            )
+    def testdatabase(self):
+        all_database=Cliente.objects.all()
+        assert len(all_database) == 1
