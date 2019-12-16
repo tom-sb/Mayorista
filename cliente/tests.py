@@ -9,4 +9,3 @@ class BasicTest(TestCase):
         cliente.save()
         record = Cliente.objects.get(pk1)
         self.assertEqual(record, item)
-    
