@@ -9,7 +9,6 @@ class BasicTest(TestCase):
             correo="adf@unsa.edu",ciudad="Toquepala",\
             direccion="av las orquideas",banco="bcp",\
             )
-        
     def testdatabase(self):
         all_database=Cliente.objects.all()
         assert len(all_database) == 1
