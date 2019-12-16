@@ -3,9 +3,9 @@ from cliente.models import Cliente
 import pytest
 # Create your tests here.
 class BasicTest(TestCase):
-    def test_fields(self):
-        Cliente.objects.create( dni="71457216", \ 
-            nombre="Javier",apellidos="Obando", \
+    def setUp(self):
+        Cliente.objects.create( dni="71457216",\
+            nombre="Javier",apellidos="Obando",\
             correo="adf@unsa.edu",ciudad="Toquepala",\
             direccion="av las orquideas",banco="bcp",\
             )
