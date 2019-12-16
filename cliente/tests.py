@@ -8,5 +8,5 @@ class BasicTest(TestCase):
         cliente.TIPO_CUENTA = "Make more cuentas"
         cliente.nombre = "here name"
         cliente.save()
-        record = Cliente.objects.get(pk1)
+        record = Cliente.objects.get(pk=1)
         self.assertEqual(record, cliente)
