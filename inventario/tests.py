@@ -3,7 +3,7 @@ from inventario.models import Inventario
 import pytest
 # Create your tests here.
 
-class TestInventario:
+class TestInventario(TestCase):
     def setUp(self):
         Inventario.objects.create(Codigo = "123456",\
                 elemento = "arroz",cantidad = 12, \
