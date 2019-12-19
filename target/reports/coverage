@@ -1,0 +1,3 @@
+Name                       Stmts   Miss Branch BrPart  Cover
+------------------------------------------------------------
+src/main/python/hello.py       6      6      0      0     0%

@@ -1,0 +1,38 @@
+running clean
+'build/lib' does not exist -- can't clean it
+'build/bdist.linux-x86_64' does not exist -- can't clean it
+'build/scripts-2.7' does not exist -- can't clean it
+running sdist
+running egg_info
+creating mayorista.egg-info
+writing mayorista.egg-info/PKG-INFO
+writing namespace_packages to mayorista.egg-info/namespace_packages.txt
+writing top-level names to mayorista.egg-info/top_level.txt
+writing dependency_links to mayorista.egg-info/dependency_links.txt
+writing manifest file 'mayorista.egg-info/SOURCES.txt'
+reading manifest file 'mayorista.egg-info/SOURCES.txt'
+writing manifest file 'mayorista.egg-info/SOURCES.txt'
+warning: sdist: standard file not found: should have one of README, README.rst, README.txt, README.md
+
+running check
+warning: check: missing required meta-data: url
+
+warning: check: missing meta-data: either (author and author_email) or (maintainer and maintainer_email) must be supplied
+
+creating mayorista-1.0.dev0
+creating mayorista-1.0.dev0/mayorista.egg-info
+creating mayorista-1.0.dev0/scripts
+copying files to mayorista-1.0.dev0...
+copying hello.py -> mayorista-1.0.dev0
+copying setup.py -> mayorista-1.0.dev0
+copying mayorista.egg-info/PKG-INFO -> mayorista-1.0.dev0/mayorista.egg-info
+copying mayorista.egg-info/SOURCES.txt -> mayorista-1.0.dev0/mayorista.egg-info
+copying mayorista.egg-info/dependency_links.txt -> mayorista-1.0.dev0/mayorista.egg-info
+copying mayorista.egg-info/namespace_packages.txt -> mayorista-1.0.dev0/mayorista.egg-info
+copying mayorista.egg-info/top_level.txt -> mayorista-1.0.dev0/mayorista.egg-info
+copying mayorista.egg-info/zip-safe -> mayorista-1.0.dev0/mayorista.egg-info
+copying scripts/hello -> mayorista-1.0.dev0/scripts
+Writing mayorista-1.0.dev0/setup.cfg
+creating dist
+Creating tar archive
+removing 'mayorista-1.0.dev0' (and everything under it)

@@ -1,0 +1,9 @@
+hello.py
+setup.py
+mayorista.egg-info/PKG-INFO
+mayorista.egg-info/SOURCES.txt
+mayorista.egg-info/dependency_links.txt
+mayorista.egg-info/namespace_packages.txt
+mayorista.egg-info/top_level.txt
+mayorista.egg-info/zip-safe
+scripts/hello

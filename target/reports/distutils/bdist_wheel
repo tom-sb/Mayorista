@@ -1,0 +1,45 @@
+running clean
+'build/lib' does not exist -- can't clean it
+'build/bdist.linux-x86_64' does not exist -- can't clean it
+'build/scripts-2.7' does not exist -- can't clean it
+running bdist_wheel
+running build
+running build_py
+creating build
+creating build/lib
+copying hello.py -> build/lib
+running build_scripts
+creating build/scripts-2.7
+copying scripts/hello -> build/scripts-2.7
+changing mode of build/scripts-2.7/hello from 644 to 755
+installing to build/bdist.linux-x86_64/wheel
+running install
+running install_lib
+creating build/bdist.linux-x86_64
+creating build/bdist.linux-x86_64/wheel
+copying build/lib/hello.py -> build/bdist.linux-x86_64/wheel
+running install_egg_info
+running egg_info
+writing mayorista.egg-info/PKG-INFO
+writing namespace_packages to mayorista.egg-info/namespace_packages.txt
+writing top-level names to mayorista.egg-info/top_level.txt
+writing dependency_links to mayorista.egg-info/dependency_links.txt
+reading manifest file 'mayorista.egg-info/SOURCES.txt'
+writing manifest file 'mayorista.egg-info/SOURCES.txt'
+Copying mayorista.egg-info to build/bdist.linux-x86_64/wheel/mayorista-1.0.dev0-py2.7.egg-info
+running install_scripts
+creating build/bdist.linux-x86_64/wheel/mayorista-1.0.dev0.data
+creating build/bdist.linux-x86_64/wheel/mayorista-1.0.dev0.data/scripts
+copying build/scripts-2.7/hello -> build/bdist.linux-x86_64/wheel/mayorista-1.0.dev0.data/scripts
+changing mode of build/bdist.linux-x86_64/wheel/mayorista-1.0.dev0.data/scripts/hello to 755
+creating build/bdist.linux-x86_64/wheel/mayorista-1.0.dev0.dist-info/WHEEL
+creating 'dist/mayorista-1.0.dev0-py2-none-any.whl' and adding 'build/bdist.linux-x86_64/wheel' to it
+adding 'hello.py'
+adding 'mayorista-1.0.dev0.data/scripts/hello'
+adding 'mayorista-1.0.dev0.dist-info/METADATA'
+adding 'mayorista-1.0.dev0.dist-info/WHEEL'
+adding 'mayorista-1.0.dev0.dist-info/namespace_packages.txt'
+adding 'mayorista-1.0.dev0.dist-info/top_level.txt'
+adding 'mayorista-1.0.dev0.dist-info/zip-safe'
+adding 'mayorista-1.0.dev0.dist-info/RECORD'
+removing build/bdist.linux-x86_64/wheel
